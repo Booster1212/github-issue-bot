@@ -3,12 +3,12 @@ import CommandHandler from "./bot/commands";
 import container from "./configs/inversify.config";
 import { TYPES } from "./configs/inversify.types";
 
-const IssueBot = container.get<Bot>(TYPES.Bot);
-IssueBot.listen().then(() => {
+const issueBot = container.get<Bot>(TYPES.Bot);
+issueBot.listen().then(() => {
   console.log("[Main - index.js] ==> Issue Bot started successfully!");
 });
 
-const commands = container.get<CommandHandler>(TYPES.CommandHandler);
-commands.listenToCommands().then((res) => {
+const botCommands = container.get<CommandHandler>(TYPES.CommandHandler);
+botCommands.listenToCommands().then((res) => {
   console.log(res);
 });
