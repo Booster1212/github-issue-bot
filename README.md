@@ -33,4 +33,4 @@ GITHUB_TOKEN=<YOUR_GITHUB_ACCESS_TOKEN_HERE> // WITHOUT < >
 ```
 
 ## Test it
-- In your configured channel id, go ahead and type !issue <text>
+- In your configured channel id, go ahead and type !issue Here the issue text starts for now ;)
