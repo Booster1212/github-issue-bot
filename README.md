@@ -4,12 +4,12 @@ Just some small fun project which i've made, feel free to use for whatever you w
 
 ## Installation
 
+- Create a Discord Bot, so you have an DISCORD_BOT_TOKEN
 - Clone this repository, drop it anywhere in a own folder or whatever
 - Create an .env file (NO EXTENSION!) and add your CREDENTIALS there! Do not push the .env file to GITHUB!
 - run: npm install
 - run: npm run build
-
-* npm run start is also a thing and will remove the whole prod folder on compilation
+- optional: npm run start is also a thing and will remove the whole prod folder on compilation
 
 
 ## Default Config
