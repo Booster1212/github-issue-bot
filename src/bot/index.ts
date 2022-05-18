@@ -1,45 +1,31 @@
-import axios from "axios";
+import 'reflect-metadata';
 import { Client } from "discord.js";
 import { inject, injectable } from "inversify";
-import { config } from "../configs";
 import { TYPES } from "../configs/inversify.types";
+import GitHubAPI from "./api/github";
+import CommandHandler from "./commands";
 
 @injectable()
-export class Bot {
+export default class Bot {
   private client: Client;
+
   private readonly token: string;
-  private readonly gitHubToken: string;
+  private readonly commandHandler: CommandHandler;
+  private readonly githubAPI: GitHubAPI;
 
   constructor(
     @inject(TYPES.Client) client: Client,
     @inject(TYPES.Token) token: string,
-    @inject(TYPES.GitHubToken) gitHubToken: string
+    @inject(TYPES.CommandHandler) commandHandler: CommandHandler,
+    @inject(TYPES.GithubAPI) githubAPI: GitHubAPI,
   ) {
     this.client = client;
     this.token = token;
-    this.gitHubToken = gitHubToken;
+    this.commandHandler = commandHandler;
+    this.githubAPI = githubAPI;
   }
 
   public listen(): Promise<string> {
     return this.client.login(this.token);
-  }
-
-  public async createIssue(title: string, content: string) {
-    const options = {
-      method: 'post',
-      url: `https://api.github.com/repos/${config.githubRepoUserName}/${config.githubRepoName}/issues`,
-      data: {
-        owner: config.githubRepoUserName,
-        repo: config.githubRepoName,
-        title: title,
-        body: content,
-        assignees: [config.githubRepoUserName],
-        labels: config.issueLabels,
-      },
-      headers: {
-        'Authorization': `token ${this.gitHubToken}`,
-      }
-    }
-    await axios(options);
   }
 }
