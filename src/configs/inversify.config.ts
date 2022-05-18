@@ -19,11 +19,13 @@ container
       ],
     })
   );
+
 container
   .bind<string>(TYPES.Token)
   .toConstantValue(process.env.TOKEN as string);
+  
 container
   .bind<string>(TYPES.GitHubToken)
-  .toConstantValue(process.env.GitHubToken as string);
+  .toConstantValue(process.env.GITHUB_TOKEN as string);
 
 export default container;
