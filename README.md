@@ -31,3 +31,6 @@ export const config = {
 TOKEN=<YOUR_DISCORD_BOT_TOKEN_HERE> // WITHOUT < >
 GITHUB_TOKEN=<YOUR_GITHUB_ACCESS_TOKEN_HERE> // WITHOUT < >
 ```
+
+## Test it
+- In your configured channel id, go ahead and type !issue <text>
