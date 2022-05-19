@@ -37,7 +37,7 @@ exports.run = (_client: Client, message: Message, _args: string[]) => {
       .addField("Labels", config.issueLabels.join(", "))
       .setThumbnail("https://git-scm.com/images/logos/1color-darkbg@2x.png");
     message.channel.send({ embeds: [issueEmbed] });
-    
+
     API.createIssue("AUTO GENERATED ISSUE | REVIEW REQUIRED", issue);
   }
 };
