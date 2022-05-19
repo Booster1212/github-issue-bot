@@ -3,8 +3,8 @@ require("dotenv").config(); // Recommended way of loading dotenv
 import { Client, Intents } from "discord.js";
 import { Container } from "inversify";
 import Bot from "../bot";
-import GitHubAPI from "../bot/api/github";
-import CommandHandler from "../bot/commands";
+import GitHubAPI from "../bot/api/githubAPI";
+import CommandHandler from "../bot/commands/registerCommands";
 import { TYPES } from "./inversify.types";
 
 let container = new Container();

@@ -1,5 +1,5 @@
 import Bot from "./bot";
-import CommandHandler from "./bot/commands";
+import CommandHandler from "./bot/commands/registerCommands";
 import container from "./configs/inversify.config";
 import { TYPES } from "./configs/inversify.types";
 

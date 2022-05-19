@@ -22,7 +22,7 @@ export default class CommandHandler {
       const command = message.content.split(" ")[0].slice(1);
       args = message.content.split(" ").slice(1);
 
-      const commandFile = require(`./${command}.js`);
+      const commandFile = require(`./chat-commands/${command}.js`);
       commandFile.run(client, message, args);
     }
   }

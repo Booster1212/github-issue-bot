@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import axios from "axios";
 import { inject, injectable } from "inversify";
-import { config } from "../../../configs";
-import { TYPES } from "../../../configs/inversify.types";
+import { config } from "../../configs";
+import { TYPES } from "../../configs/inversify.types";
 
 @injectable()
 export default class GitHubAPI {

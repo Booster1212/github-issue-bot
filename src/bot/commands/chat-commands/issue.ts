@@ -1,7 +1,7 @@
 import { Client, Message, MessageEmbed } from "discord.js";
-import { config } from "../../configs";
-import container from "../../configs/inversify.config";
-import GitHubAPI from "../api/github";
+import { config } from "../../../configs";
+import container from "../../../configs/inversify.config";
+import GitHubAPI from "../../api/githubAPI";
 
 const API = container.resolve<GitHubAPI>(GitHubAPI);
 
