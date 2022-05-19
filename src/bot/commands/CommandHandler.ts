@@ -7,7 +7,7 @@ import { DISCORD } from "../../configs/inversify.types";
 
 @injectable()
 export default class CommandHandler {
-  public async executeor(): Promise<string> {
+  public async executor(): Promise<string> {
     const client = container.get<Client>(DISCORD.Client);
 
     client.on("messageCreate", this.handleMessage);

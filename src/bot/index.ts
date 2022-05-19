@@ -26,6 +26,6 @@ export default class Bot {
   }
 
   public listenToCommands() {
-    return this.commandHandler.executeor();
+    return this.commandHandler.executor();
   }
 }
