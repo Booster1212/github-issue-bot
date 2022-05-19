@@ -9,4 +9,4 @@ issueBot.listen().then(() => {
 
 issueBot.listenToCommands().then((res) => {
   console.log(res);
-})
+});

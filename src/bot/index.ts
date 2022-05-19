@@ -1,10 +1,9 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 import { Client } from "discord.js";
 import { inject, injectable } from "inversify";
 import { BOT, DISCORD, GITHUB } from "../configs/inversify.types";
 import GitHubAPI from "./api/githubAPI";
-import CommandHandler from './commands/CommandHandler';
-
+import CommandHandler from "./commands/CommandHandler";
 
 @injectable()
 export default class Bot {
