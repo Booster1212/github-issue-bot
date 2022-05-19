@@ -5,7 +5,7 @@ import GitHubAPI from "../../api/githubAPI";
 
 const API = container.resolve<GitHubAPI>(GitHubAPI);
 
-exports.run = (_client: Client, message: Message, _args: string[]) => {
+exports.run = async (_client: Client, message: Message, _args: string[]) => {
   if (message.author.bot) return;
 
   if (message.channelId !== config.issueChannel) {
@@ -38,6 +38,7 @@ exports.run = (_client: Client, message: Message, _args: string[]) => {
       .setThumbnail("https://git-scm.com/images/logos/1color-darkbg@2x.png");
     message.channel.send({ embeds: [issueEmbed] });
 
+    await message.channel.send("Creating issue...");
     API.createIssue("AUTO GENERATED ISSUE | REVIEW REQUIRED", issue);
   }
 };

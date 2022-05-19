@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { Client } from "discord.js";
 import { inject, injectable } from "inversify";
 import { BOT, DISCORD } from "../configs/inversify.types";
+
 import CommandHandler from "./commands/CommandHandler";
 
 @injectable()

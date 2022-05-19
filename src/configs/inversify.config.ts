@@ -10,6 +10,8 @@ import { BOT, DISCORD, GITHUB } from "./inversify.types";
 let container = new Container();
 
 container.bind<Bot>(DISCORD.Bot).to(Bot).inSingletonScope();
+container.bind<string>(BOT.Id).toConstantValue(process.env.BOT_ID ?? "");
+
 container.bind<Client>(DISCORD.Client).toConstantValue(
   new Client({
     intents: [
@@ -21,6 +23,8 @@ container.bind<Client>(DISCORD.Client).toConstantValue(
 );
 
 container.bind<string>(DISCORD.Token).toConstantValue(process.env.TOKEN ?? "");
+container.bind<string>(DISCORD.Guild).toConstantValue(process.env.GUILD_ID ?? "");
+
 
 container
   .bind<string>(GITHUB.GithubToken)
