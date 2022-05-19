@@ -1,8 +1,14 @@
-export const TYPES = {
+export const BOT = {
+  CommandHandler: Symbol("CommandHandler"),
+}
+
+export const DISCORD = {
   Bot: Symbol("Bot"),
   Client: Symbol("Client"),
   Token: Symbol("Token"),
-  GitHubToken: Symbol("GitHubToken"),
+}
+
+export const GITHUB = {
+  GithubToken: Symbol("GithubToken"),
   GithubAPI: Symbol("GithubAPI"),
-  CommandHandler: Symbol("CommandHandler"),
-};
+}

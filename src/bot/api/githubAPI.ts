@@ -2,13 +2,13 @@ import "reflect-metadata";
 import axios from "axios";
 import { inject, injectable } from "inversify";
 import { config } from "../../configs";
-import { TYPES } from "../../configs/inversify.types";
+import { GITHUB } from "../../configs/inversify.types";
 
 @injectable()
 export default class GitHubAPI {
   private readonly gitHubToken: string;
 
-  constructor(@inject(TYPES.GitHubToken) gitHubToken: string) {
+  constructor(@inject(GITHUB.GithubToken) gitHubToken: string) {
     this.gitHubToken = gitHubToken;
   }
 
