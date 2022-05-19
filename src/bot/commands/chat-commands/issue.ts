@@ -1,10 +1,10 @@
 import { Client, Message, MessageEmbed } from "discord.js";
+import Bot from "../..";
 import { config } from "../../../configs";
 import container from "../../../configs/inversify.config";
-import GitHubAPI from "../../api/githubAPI";
+import { DISCORD } from "../../../configs/inversify.types";
 
-const API = container.resolve<GitHubAPI>(GitHubAPI);
-
+const BOT = container.get<Bot>(DISCORD.Bot);
 exports.run = (_client: Client, message: Message, _args: string[]) => {
   if (message.author.bot) return;
 
@@ -38,6 +38,6 @@ exports.run = (_client: Client, message: Message, _args: string[]) => {
       .setThumbnail("https://git-scm.com/images/logos/1color-darkbg@2x.png");
     message.channel.send({ embeds: [issueEmbed] });
 
-    API.createIssue("AUTO GENERATED ISSUE | REVIEW REQUIRED", issue);
+    BOT.createIssue("AUTO GENERATED ISSUE | REVIEW REQUIRED", issue);
   }
 };
