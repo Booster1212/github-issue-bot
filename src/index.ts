@@ -10,3 +10,7 @@ issueBot.listen().then(() => {
 issueBot.listenToCommands().then((res) => {
   console.log(res);
 });
+
+issueBot.listenToSlashCommands().then((res) => {
+  console.log(res);
+});

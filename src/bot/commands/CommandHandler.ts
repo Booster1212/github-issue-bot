@@ -26,4 +26,8 @@ export default class CommandHandler {
       commandFile.run(client, message, args);
     }
   }
+
+  public async slashExecutor(): Promise<string> {
+    return Promise.resolve("[INJECTION - index.js] ==> Listening to slash commands...");
+  }
 }

@@ -28,4 +28,8 @@ export default class Bot {
   public listenToCommands() {
     return this.commandHandler.executor();
   }
+
+  public listenToSlashCommands() {
+    return this.commandHandler.slashExecutor();
+  }
 }
