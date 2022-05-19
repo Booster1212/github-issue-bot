@@ -20,13 +20,11 @@ container.bind<Client>(DISCORD.Client).toConstantValue(
   })
 );
 
-container
-  .bind<string>(DISCORD.Token)
-  .toConstantValue(process.env.TOKEN as string);
+container.bind<string>(DISCORD.Token).toConstantValue(process.env.TOKEN ?? "");
 
 container
   .bind<string>(GITHUB.GithubToken)
-  .toConstantValue(process.env.GITHUB_TOKEN as string);
+  .toConstantValue(process.env.GITHUB_TOKEN ?? "");
 
 container.bind<CommandHandler>(BOT.CommandHandler).to(CommandHandler);
 
