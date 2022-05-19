@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "start": "rmdir /s /q prod && npx tsc && node prod/index.js"
+    "build": "npx swc ./src --out-dir prod",
+    "start": "rmdir /s /q prod && npm run build && node ./prod/index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Booster1212",
+  "license": "MIT",
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
     "@discordjs/rest": "^0.4.1",
@@ -18,5 +18,10 @@
     "dotenv": "^16.0.1",
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.186",
+    "regenerator-runtime": "^0.13.9"
   }
 }
