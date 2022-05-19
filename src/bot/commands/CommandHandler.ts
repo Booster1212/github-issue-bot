@@ -3,12 +3,12 @@ import { Client, Message } from "discord.js";
 import { injectable } from "inversify";
 import { config } from "../../configs";
 import container from "../../configs/inversify.config";
-import { TYPES } from "../../configs/inversify.types";
+import { DISCORD } from "../../configs/inversify.types";
 
 @injectable()
 export default class CommandHandler {
-  public async listenToCommands(): Promise<string> {
-    const client = container.get<Client>(TYPES.Client);
+  public async executeor(): Promise<string> {
+    const client = container.get<Client>(DISCORD.Client);
 
     client.on("messageCreate", this.handleMessage);
 

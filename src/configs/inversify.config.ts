@@ -1,16 +1,16 @@
-require("dotenv").config(); // Recommended way of loading dotenv
+require("dotenv").config(); // Load dotenv variables (recommend, e.g. for GitHub API token)
 
 import { Client, Intents } from "discord.js";
 import { Container } from "inversify";
 import Bot from "../bot";
 import GitHubAPI from "../bot/api/githubAPI";
-import CommandHandler from "../bot/commands/registerCommands";
-import { TYPES } from "./inversify.types";
+import CommandHandler from "../bot/commands/CommandHandler";
+import { BOT, DISCORD, GITHUB } from "./inversify.types";
 
 let container = new Container();
 
-container.bind<Bot>(TYPES.Bot).to(Bot).inSingletonScope();
-container.bind<Client>(TYPES.Client).toConstantValue(
+container.bind<Bot>(DISCORD.Bot).to(Bot).inSingletonScope();
+container.bind<Client>(DISCORD.Client).toConstantValue(
   new Client({
     intents: [
       Intents.FLAGS.GUILDS,
@@ -21,15 +21,15 @@ container.bind<Client>(TYPES.Client).toConstantValue(
 );
 
 container
-  .bind<string>(TYPES.Token)
+  .bind<string>(DISCORD.Token)
   .toConstantValue(process.env.TOKEN as string);
 
 container
-  .bind<string>(TYPES.GitHubToken)
+  .bind<string>(GITHUB.GithubToken)
   .toConstantValue(process.env.GITHUB_TOKEN as string);
 
-container.bind<CommandHandler>(TYPES.CommandHandler).to(CommandHandler);
+container.bind<CommandHandler>(BOT.CommandHandler).to(CommandHandler);
 
-container.bind<GitHubAPI>(TYPES.GithubAPI).to(GitHubAPI);
+container.bind<GitHubAPI>(GITHUB.GithubAPI).to(GitHubAPI);
 
 export default container;
