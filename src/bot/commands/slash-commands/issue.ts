@@ -11,10 +11,10 @@ module.exports = {
     .setName("issue")
     .setDescription("Creates an issue in the #issues channel")
     .addStringOption((option) =>
-      option.setName("title").setDescription("Title of the issue")
+      option.setName("title").setDescription("Title of the issue").setRequired(true)
     )
     .addStringOption((option) =>
-      option.setName("issue").setDescription("Description of the issue")
+      option.setName("issue").setDescription("Description of the issue").setRequired(true)
     ),
   async execute(interaction: CommandInteraction) {
     try {
