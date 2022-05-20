@@ -3,7 +3,7 @@ import axios from "axios";
 import { config } from "../../configs";
 import { singleton } from "tsyringe";
 
-require('dotenv').config()
+require("dotenv").config();
 
 @singleton()
 export default class GitHubAPI {

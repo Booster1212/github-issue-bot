@@ -8,14 +8,20 @@ module.exports = {
     .setName("issue")
     .setDescription("Creates an issue in the #issues channel")
     .addStringOption((option) =>
-      option.setName("title").setDescription("Title of the issue").setRequired(true)
+      option
+        .setName("title")
+        .setDescription("Title of the issue")
+        .setRequired(true)
     )
     .addStringOption((option) =>
-      option.setName("issue").setDescription("Description of the issue").setRequired(true)
+      option
+        .setName("issue")
+        .setDescription("Description of the issue")
+        .setRequired(true)
     ),
   async execute(interaction: CommandInteraction) {
     try {
-      if(interaction.channelId !== config.issueChannel) {
+      if (interaction.channelId !== config.issueChannel) {
         return interaction.reply({
           content: "You can only use this command in the #issues channel.",
           ephemeral: true,

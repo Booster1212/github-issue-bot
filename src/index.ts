@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import './configs/tsyringe/container';
+import "./configs/tsyringe/container";
 import { container } from "tsyringe";
 import Bot from "./bot";
 

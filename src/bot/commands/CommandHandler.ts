@@ -9,7 +9,6 @@ import { inject, singleton } from "tsyringe";
 
 require("dotenv").config();
 
-
 @singleton()
 export default class CommandHandler {
   constructor(@inject("Client") private readonly client: Client) {
@@ -24,7 +23,7 @@ export default class CommandHandler {
     }
 
     this.generateCommands();
-    this.client.on('interactionCreate', this.handleInteraction.bind(this));
+    this.client.on("interactionCreate", this.handleInteraction.bind(this));
   }
 
   private async handleInteraction(interaction: Interaction) {
@@ -79,7 +78,9 @@ export default class CommandHandler {
           }
         );
 
-        console.log("GitHub Issue Bot ==> Successfully initialized slash commands!");
+        console.log(
+          "GitHub Issue Bot ==> Successfully initialized slash commands!"
+        );
       } catch (error) {
         console.error(error);
       }
