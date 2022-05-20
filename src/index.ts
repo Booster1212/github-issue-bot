@@ -1,16 +1,13 @@
+import "reflect-metadata";
+import './configs/tsyringe/container';
+import { container } from "tsyringe";
 import Bot from "./bot";
-import container from "./configs/inversify.config";
-import { DISCORD } from "./configs/inversify.types";
 
-const issueBot = container.get<Bot>(DISCORD.Bot);
+const issueBot = container.resolve(Bot);
 issueBot.listen().then(() => {
-  console.log("[Main - index.js] ==> Issue Bot started successfully!");
+  console.log("GitHub Issue Bot ==> started successfully!");
 });
 
-issueBot.listenToCommands().then((res) => {
-  console.log(res);
-});
-
-issueBot.listenToSlashCommands().then((res) => {
-  console.log(res);
+issueBot.listenToSlashCommands().then(() => {
+  console.log("GitHub Issue Bot ==> Listening to Slash ('/') commands...");
 });

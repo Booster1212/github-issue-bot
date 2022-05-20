@@ -1,10 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed } from "discord.js";
 import { config } from "../../../configs";
-import container from "../../../configs/inversify.config";
 import GitHubAPI from "../../api/githubAPI";
-
-const API = container.resolve<GitHubAPI>(GitHubAPI);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -30,7 +27,7 @@ module.exports = {
         .setThumbnail("https://git-scm.com/images/logos/1color-darkbg@2x.png");
       interaction.reply({ embeds: [issueEmbed] });
 
-      await API.createIssue(title as string, issue as string);
+      await GitHubAPI.createIssue(title as string, issue as string);
     } catch (error) {
       console.log(error);
     }

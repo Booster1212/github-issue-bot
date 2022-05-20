@@ -1,36 +1,26 @@
 import "reflect-metadata";
 import { Client } from "discord.js";
-import { inject, injectable } from "inversify";
-import { BOT, DISCORD } from "../configs/inversify.types";
 
 import CommandHandler from "./commands/CommandHandler";
+import { container, inject, singleton } from "tsyringe";
 
-@injectable()
+require('dotenv').config();
+
+@singleton()
 export default class Bot {
-  private client: Client;
-
-  private readonly token: string;
-  private readonly commandHandler: CommandHandler;
-
   constructor(
-    @inject(DISCORD.Client) client: Client,
-    @inject(DISCORD.Token) token: string,
-    @inject(BOT.CommandHandler) commandHandler: CommandHandler
+    @inject("Client") private readonly client: Client,
+    @inject("CommandHandler") private readonly commandHandler: CommandHandler
   ) {
-    this.client = client;
-    this.token = token;
-    this.commandHandler = commandHandler;
+    this.client = container.resolve("Client");
+    this.commandHandler = container.resolve("CommandHandler");
   }
 
   public listen(): Promise<string> {
-    return this.client.login(this.token);
-  }
-
-  public listenToCommands() {
-    return this.commandHandler.executor();
+    return this.client.login(process.env.TOKEN as string);
   }
 
   public listenToSlashCommands() {
-    return this.commandHandler.slashExecutor();
+    return this.commandHandler.executor();
   }
 }
