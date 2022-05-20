@@ -16,7 +16,7 @@ export default class CommandHandler {
     this.client = client;
   }
 
-  public async executor(): Promise<string> {
+  public async executor(): Promise<string | undefined> {
     if (!config.enableSlashCommands) {
       return Promise.resolve(
         "[INJECTION - index.js] ==> Slash commands are currently disabled."
@@ -25,10 +25,6 @@ export default class CommandHandler {
 
     this.generateCommands();
     this.client.on('interactionCreate', this.handleInteraction.bind(this));
-
-    return Promise.resolve(
-      "[INJECTION - index.js] ==> Listening to slash commands..."
-    );
   }
 
   private async handleInteraction(interaction: Interaction) {
@@ -73,8 +69,6 @@ export default class CommandHandler {
     );
     (async () => {
       try {
-        console.log("Started refreshing application (/) commands.");
-
         await rest.put(
           Routes.applicationGuildCommands(
             process.env.BOT_ID ?? "",

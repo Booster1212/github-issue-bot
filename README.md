@@ -1,6 +1,6 @@
 # Discord - GitHub Issue Bot
 
-Simple Bot to create Issues on a repository through discord, powerd by DiscordJS & InversifyJS.
+Simple Bot to create Issues on a repository through discord, powerd by DiscordJS & Tsyringe.
 
 ## Getting Started
 
@@ -25,16 +25,12 @@ GUILD_ID=<YourDiscordServerID> // without < >
 
 ```ts
 export const config = {
-  commandPrefix: "!", // Probably removed next Update.
-
-  enableChatCommands: false, // Probably removed next Update
   enableSlashCommands: true, // Recommend currently.
 
   githubRepoUserName: "Booster1212", // Your Github Username
   githubRepoName: "github-issue-bot", // The repository you want the issue to sent to.
 
   issueChannel: "976164749572194335", // Discord Channel where the /issue command should work
-  issueMinLength: 15, // Description length must be at least 15 characters long.
   issueLabels: ["bug", "enhancement"], // Labels of your Github Repository are valid here.
 };
 ```

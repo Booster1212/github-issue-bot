@@ -15,6 +15,12 @@ module.exports = {
     ),
   async execute(interaction: CommandInteraction) {
     try {
+      if(interaction.channelId !== config.issueChannel) {
+        return interaction.reply({
+          content: "You can only use this command in the #issues channel.",
+          ephemeral: true,
+        });
+      }
       const title = interaction.options.data[0].value;
       const issue = interaction.options.data[1].value;
 

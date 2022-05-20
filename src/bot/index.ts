@@ -4,7 +4,7 @@ import { Client } from "discord.js";
 import CommandHandler from "./commands/CommandHandler";
 import { container, inject, singleton } from "tsyringe";
 
-require('dotenv').config();
+require("dotenv").config();
 
 @singleton()
 export default class Bot {
@@ -20,7 +20,7 @@ export default class Bot {
     return this.client.login(process.env.TOKEN as string);
   }
 
-  public listenToSlashCommands() {
+  public listenToSlashCommands(): Promise<string | undefined> {
     return this.commandHandler.executor();
   }
 }
