@@ -68,7 +68,6 @@ export default class CommandHandler {
   }
 
   private loadCommands(commands: any[]) {
-    console.log(JSON.stringify(commands))
     const rest = new REST({ version: "9" }).setToken(
       process.env.TOKEN as string
     );
@@ -86,7 +85,7 @@ export default class CommandHandler {
           }
         );
 
-        console.log("Successfully reloaded application (/) commands.");
+        console.log("GitHub Issue Bot ==> Successfully initialized slash commands!");
       } catch (error) {
         console.error(error);
       }
