@@ -1,15 +1,15 @@
-import "reflect-metadata";
-import axios from "axios";
-import { config } from "../../configs";
-import { singleton } from "tsyringe";
+import 'reflect-metadata';
+import axios from 'axios';
+import { config } from '../../configs';
+import { singleton } from 'tsyringe';
 
-require("dotenv").config();
+require('dotenv').config();
 
 @singleton()
 export default class GitHubAPI {
   public static async createIssue(title: string, content: string) {
     const options = {
-      method: "post",
+      method: 'post',
       url: `https://api.github.com/repos/${config.githubRepoUserName}/${config.githubRepoName}/issues`,
       data: {
         owner: config.githubRepoUserName,

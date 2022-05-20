@@ -23,5 +23,11 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.186",
     "regenerator-runtime": "^0.13.9"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }

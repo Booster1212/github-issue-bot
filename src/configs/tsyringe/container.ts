@@ -1,10 +1,10 @@
-import { Client, Intents } from "discord.js";
-import { container } from "tsyringe";
-import Bot from "../../bot";
-import GitHubAPI from "../../bot/api/githubAPI";
-import CommandHandler from "../../bot/commands/CommandHandler";
+import { Client, Intents } from 'discord.js';
+import { container } from 'tsyringe';
+import Bot from '../../bot';
+import GitHubAPI from '../../bot/api/githubAPI';
+import CommandHandler from '../../bot/commands/CommandHandler';
 
-container.register("Client", {
+container.register('Client', {
   useValue: new Client({
     intents: [
       Intents.FLAGS.GUILDS,
@@ -14,6 +14,6 @@ container.register("Client", {
   }),
 });
 
-container.registerSingleton("Bot", Bot);
-container.registerSingleton("GithubAPI", GitHubAPI);
-container.registerSingleton("CommandHandler", CommandHandler);
+container.registerSingleton('Bot', Bot);
+container.registerSingleton('GithubAPI', GitHubAPI);
+container.registerSingleton('CommandHandler', CommandHandler);

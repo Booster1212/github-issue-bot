@@ -1,29 +1,29 @@
-import "reflect-metadata";
-import { Client, Collection, Interaction } from "discord.js";
-import { config } from "../../configs";
-import fs from "fs";
-import path from "path";
-import { Routes } from "discord.js/node_modules/discord-api-types/v9";
-import { REST } from "@discordjs/rest";
-import { inject, singleton } from "tsyringe";
+import 'reflect-metadata';
+import { Client, Collection, Interaction } from 'discord.js';
+import { config } from '../../configs';
+import fs from 'fs';
+import path from 'path';
+import { Routes } from 'discord.js/node_modules/discord-api-types/v9';
+import { REST } from '@discordjs/rest';
+import { inject, singleton } from 'tsyringe';
 
-require("dotenv").config();
+require('dotenv').config();
 
 @singleton()
 export default class CommandHandler {
-  constructor(@inject("Client") private readonly client: Client) {
+  constructor(@inject('Client') private readonly client: Client) {
     this.client = client;
   }
 
   public async executor(): Promise<string | undefined> {
     if (!config.enableSlashCommands) {
       return Promise.resolve(
-        "[INJECTION - index.js] ==> Slash commands are currently disabled."
+        '[INJECTION - index.js] ==> Slash commands are currently disabled.'
       );
     }
 
     this.generateCommands();
-    this.client.on("interactionCreate", this.handleInteraction.bind(this));
+    this.client.on('interactionCreate', this.handleInteraction.bind(this));
   }
 
   private async handleInteraction(interaction: Interaction) {
@@ -37,7 +37,7 @@ export default class CommandHandler {
       await command.execute(interaction);
     } catch (error) {
       await interaction.reply({
-        content: "There was an error while executing this command!",
+        content: 'There was an error while executing this command!',
         ephemeral: true,
       });
     }
@@ -45,10 +45,10 @@ export default class CommandHandler {
 
   private generateCommands() {
     const commands: any[] = [];
-    const commandsPath = path.join(__dirname, "./slash-commands");
+    const commandsPath = path.join(__dirname, './slash-commands');
     const commandFiles = fs
       .readdirSync(commandsPath)
-      .filter((file) => file.endsWith(".js"));
+      .filter((file) => file.endsWith('.js'));
 
     this.client.commands = new Collection();
 
@@ -63,15 +63,15 @@ export default class CommandHandler {
   }
 
   private loadCommands(commands: any[]) {
-    const rest = new REST({ version: "9" }).setToken(
+    const rest = new REST({ version: '9' }).setToken(
       process.env.TOKEN as string
     );
     (async () => {
       try {
         await rest.put(
           Routes.applicationGuildCommands(
-            process.env.BOT_ID ?? "",
-            process.env.GUILD_ID ?? ""
+            process.env.BOT_ID ?? '',
+            process.env.GUILD_ID ?? ''
           ),
           {
             body: commands,
@@ -79,7 +79,7 @@ export default class CommandHandler {
         );
 
         console.log(
-          "GitHub Issue Bot ==> Successfully initialized slash commands!"
+          'GitHub Issue Bot ==> Successfully initialized slash commands!'
         );
       } catch (error) {
         console.error(error);

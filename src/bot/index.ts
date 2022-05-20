@@ -1,19 +1,19 @@
-import "reflect-metadata";
-import { Client } from "discord.js";
+import 'reflect-metadata';
+import { Client } from 'discord.js';
 
-import CommandHandler from "./commands/CommandHandler";
-import { container, inject, singleton } from "tsyringe";
+import CommandHandler from './commands/CommandHandler';
+import { container, inject, singleton } from 'tsyringe';
 
-require("dotenv").config();
+require('dotenv').config();
 
 @singleton()
 export default class Bot {
   constructor(
-    @inject("Client") private readonly client: Client,
-    @inject("CommandHandler") private readonly commandHandler: CommandHandler
+    @inject('Client') private readonly client: Client,
+    @inject('CommandHandler') private readonly commandHandler: CommandHandler
   ) {
-    this.client = container.resolve("Client");
-    this.commandHandler = container.resolve("CommandHandler");
+    this.client = container.resolve('Client');
+    this.commandHandler = container.resolve('CommandHandler');
   }
 
   public listen(): Promise<string> {
