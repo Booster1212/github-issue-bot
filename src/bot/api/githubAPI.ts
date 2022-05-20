@@ -1,18 +1,13 @@
 import "reflect-metadata";
 import axios from "axios";
-import { inject, injectable } from "inversify";
 import { config } from "../../configs";
-import { GITHUB } from "../../configs/inversify.types";
+import { singleton } from "tsyringe";
 
-@injectable()
+require('dotenv').config()
+
+@singleton()
 export default class GitHubAPI {
-  private readonly gitHubToken: string;
-
-  constructor(@inject(GITHUB.GithubToken) gitHubToken: string) {
-    this.gitHubToken = gitHubToken;
-  }
-
-  public async createIssue(title: string, content: string) {
+  public static async createIssue(title: string, content: string) {
     const options = {
       method: "post",
       url: `https://api.github.com/repos/${config.githubRepoUserName}/${config.githubRepoName}/issues`,
@@ -25,7 +20,7 @@ export default class GitHubAPI {
         labels: config.issueLabels,
       },
       headers: {
-        Authorization: `token ${this.gitHubToken}`,
+        Authorization: `token ${process.env.GITHUB_TOKEN as string}`,
       },
     };
     await axios(options);

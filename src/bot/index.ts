@@ -1,39 +1,26 @@
 import "reflect-metadata";
 import { Client } from "discord.js";
-import { inject, injectable } from "inversify";
-import { BOT, DISCORD, GITHUB } from "../configs/inversify.types";
-import GitHubAPI from "./api/githubAPI";
+
 import CommandHandler from "./commands/CommandHandler";
+import { container, inject, singleton } from "tsyringe";
 
-@injectable()
+require("dotenv").config();
+
+@singleton()
 export default class Bot {
-  private client: Client;
-
-  private readonly token: string;
-  private readonly githubAPI: GitHubAPI;
-  private readonly commandHandler: CommandHandler;
-
   constructor(
-    @inject(DISCORD.Client) client: Client,
-    @inject(DISCORD.Token) token: string,
-    @inject(GITHUB.GithubAPI) githubAPI: GitHubAPI,
-    @inject(BOT.CommandHandler) commandHandler: CommandHandler
+    @inject("Client") private readonly client: Client,
+    @inject("CommandHandler") private readonly commandHandler: CommandHandler
   ) {
-    this.client = client;
-    this.token = token;
-    this.githubAPI = githubAPI;
-    this.commandHandler = commandHandler;
+    this.client = container.resolve("Client");
+    this.commandHandler = container.resolve("CommandHandler");
   }
 
   public listen(): Promise<string> {
-    return this.client.login(this.token);
+    return this.client.login(process.env.TOKEN as string);
   }
 
-  public listenToCommands() {
-    return this.commandHandler.executeor();
-  }
-
-  public async createIssue(title: string, content: string) {
-    await this.githubAPI.createIssue(title, content);
+  public listenToSlashCommands(): Promise<string | undefined> {
+    return this.commandHandler.executor();
   }
 }
